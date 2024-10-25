@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patient Database Form</title>
+
+    <!-- <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"> -->
+     <!-- <link rel="stylesheet" href="static/style.css"> -->
+      <style>
+      * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', "Times New Roman", "Gill Sans MT Ext Condensed Bold", Tahoma, "Bodoni MT";
+    background-color: #f4f4f9;
+    padding: 20px;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: Purple;
+    animation: fadeIn 3s ease;
+}
+
+/* Header Styling */
+header {
+    background-color: hotpink;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    transition: color 0.3s ease-in-out;
+}
+
+header a.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff;
+    transition: transform 0.3s ease, color 0.3s ease-in-out;
+}
+
+header a.logo:hover {
+    color: #c3e6cb;
+    transform: scale(1.1);
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    font-size: 1.2rem;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: deeppink;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+    nav {
+        display: none; /* Initially hide the nav */
+    }
+
+    .menu-icon {
+        font-size: 1.8rem;
+        cursor: pointer;
+        color: #ffffff;
+        display: block;
+    }
+
+    nav.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background-color: hotpink;
+        width: 200px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        animation: slideDown 0.5s ease-in-out;
+    }
+
+    nav.active a {
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid #ffffff;
+    }
+
+    nav.active a:last-child {
+        border-bottom: none;
+    }
+}
+
+/* Slide Down Animation for Mobile Menu */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Form Container with Smooth Transitions */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    padding: 20px;
+    animation: fadeInUp 1s ease;
+}
+
+.form-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Layout */
+.form-container form {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.left,
+.right {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #333;
+}
+
+input[type='text'],
+input[type='number'],
+select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+input[type='text']:focus,
+input[type='number']:focus,
+select:focus {
+    border-color: darkred;
+}
+
+input[name="firstname"],
+input[name="lastname"],
+input[name="Phonenumber"] {
+    margin-bottom: 15px;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 12px;
+    background-color: hotpink;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 20px;
+}
+
+.submit-button:hover {
+    background-color: hotpink;
+    transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .form-container {
+        width: 100%; /* Make form full-width on smaller screens */
+    }
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Fade-In Up Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Additional Styling */
+.hyper {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.hyper span {
+    margin-left: 10px;
+}
+
+input[type='radio'] + span:hover,
+label:hover {
+    color: hotpink;
+}
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    animation: fadeInUp 0.8s ease;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+th {
+    background-color: hotpink;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+td {
+    font-size: 1rem;
+}
+
+/* Table Header and Row Hover Effects */
+thead {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+tbody tr:hover td {
+    background-color: #e9f5ea;
+    color: #218838;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    table, th, td {
+        font-size: 0.9rem;
+    }
+    th, td {
+        padding: 10px;
+ }
+}
+      </style>
+  </head>
+  <body>
+    <header>
+      <a href="#" class="logo">Logo</a>
+      <!-- Hamburger menu icon for mobile -->
+      <span class="menu-icon" onclick="toggleMenu()">☰</span>
+      <nav>
+        <a href="#">Add Patient</a>
+        <a href="#">All Patients</a>
+      </nav>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+    <script>
+      function toggleMenu() {
+        const nav = document.querySelector("nav");
+        nav.classList.toggle("active");
+      }
+    </script>
+  </body>
+</html>
